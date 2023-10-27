@@ -42,9 +42,9 @@ public class GroupAnagrams {
             if (map.containsKey(outputString)) {
                 map.get(outputString).add(word);
             } else {
-                //List<String> myList = new ArrayList<>();
-              //  myList.add(word);
-                map.put(outputString, new ArrayList<>());
+                List<String> myList = new ArrayList<>();
+                 myList.add(word);
+                map.put(outputString, myList);
             }
         }
 

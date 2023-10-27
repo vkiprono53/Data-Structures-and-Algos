@@ -25,7 +25,7 @@ public class TopKFrequentElements {
     /**
      * Time Complexity: O(n log(k)), where n is the number of elements in nums.
      * Space Complexity: O(n + k), for the counts hash map with n elements and the heap of size k
-     * 
+     *
      */
     public static int[] topKFrequent(int[] nums, int k) {
 
