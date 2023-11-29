@@ -24,6 +24,12 @@ public class Merge2SortedList {
 
     }
 
+    /**
+     * Time complexity is O(m + n) - m = Length of the first list, n = Length of the second list
+     * Space complexity - O(1)
+     *
+     */
+
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 
         if (list1 == null) {
