@@ -27,16 +27,15 @@ public class InvertBinaryTree {
     }
 
     /**
-     *
      * Time Complexity - O(n)
      * Space Complexity - O(1)
-     *
      */
     public TreeNode invertTree(TreeNode root) {
 
         if (root == null) {
             return root;
         }
+
 
         TreeNode left = invertTree(root.left);
         TreeNode right = invertTree(root.right);
