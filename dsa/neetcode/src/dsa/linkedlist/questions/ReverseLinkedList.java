@@ -6,6 +6,10 @@ package dsa.linkedlist.questions;
  */
 
 import dsa.linkedlist.ListNode;
+import dsa.linkedlist.MyLinkedList;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 
 /**
@@ -17,6 +21,18 @@ import dsa.linkedlist.ListNode;
  */
 public class ReverseLinkedList {
     public static void main(String[] args) {
+        MyLinkedList linkedList = new MyLinkedList();
+        ListNode head = linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        System.out.println("-----DISPLAY-------");
+        linkedList.display(head);
+        System.out.println("----REORDER-----");
+        ListNode head1 = reverseList1(head);
+        linkedList.display(head1);
+
     }
 
     /**
@@ -24,7 +40,7 @@ public class ReverseLinkedList {
      *Space: O(1)
      *
      */
-    public ListNode reverseList(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
         if (head == null){
             return null;
         }
@@ -41,4 +57,29 @@ public class ReverseLinkedList {
         head = prev;
         return head;
     }
+
+    /**
+     *
+     * Using Stack
+     * Time - O(n)
+     * Space - O(n)
+     */
+    public static ListNode reverseList1(ListNode head){
+        Deque<Integer> myDeque = new ArrayDeque<>();
+        ListNode temp = head;
+
+        while (temp != null){
+            myDeque.push(temp.val);
+            temp = temp.next;
+        }
+        temp = head;
+        while (!myDeque.isEmpty()){
+            temp.val = myDeque.peek();
+            temp = temp.next;
+            myDeque.pop();
+
+        }
+        return head;
+    }
+
 }
