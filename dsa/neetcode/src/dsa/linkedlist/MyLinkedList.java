@@ -7,6 +7,9 @@ package dsa.linkedlist;
 
 public class MyLinkedList {
     ListNode head;
+    int size;
+
+
 
     public static void main(String[] args) {
         MyLinkedList linkedList = new MyLinkedList();
@@ -18,7 +21,7 @@ public class MyLinkedList {
         ListNode head1 = linkedList.addFront(10);
         System.out.println(linkedList.display(head1));
         System.out.println("-----DELETING-----");
-        linkedList.delete(8);
+       // linkedList.delete(8);
         System.out.println(linkedList.display(linkedList.head));
 
     }
@@ -35,6 +38,7 @@ public class MyLinkedList {
             temp = temp.next;
         }
         temp.next = newNode;
+        size++;
         return head;
 
     }
@@ -60,6 +64,34 @@ public class MyLinkedList {
         head = newNode;
         return head;
     }
+
+    //Add at the specific position:
+    public ListNode add(int data, int pos){
+        int count = 1;
+        ListNode newNode = new ListNode(data);
+        ListNode temp = head;
+        if (temp == null){
+            head = newNode;
+            return head;
+        }
+        while (temp.next != null){
+            temp = temp.next;
+            if (count == pos){
+                break;
+            }
+            count++;
+        }
+        newNode.next = temp.next.next;
+        temp.next = newNode;
+        if (pos > count){
+            return head;
+        }
+        temp.next = newNode;
+        size++;
+        return head;
+
+    }
+
     //Delete node-data
     public ListNode delete(int data){
         ListNode temp = head;
@@ -77,5 +109,9 @@ public class MyLinkedList {
             temp = temp.next;
         }
         return head;
+    }
+
+    public int size(){
+        return size;
     }
 }
