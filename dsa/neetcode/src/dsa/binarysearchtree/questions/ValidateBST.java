@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * @created 12/7/23
  */
 
-import dsa.binarysearchtree.BSTNode;
 import dsa.binarytree.TreeNode;
 
 /**
@@ -26,7 +25,18 @@ import dsa.binarytree.TreeNode;
 public class ValidateBST {
     List<Integer> myList = new ArrayList<>();
 
+    TreeNode root;
     public static void main(String[] args) {
+        ValidateBST validateBST = new ValidateBST();
+
+        validateBST.root= new TreeNode(100);
+        validateBST.root.left= new TreeNode(90);
+        validateBST.root.right= new TreeNode(110);
+        validateBST.root.left.left= new TreeNode(80);
+        validateBST.root.left.right= new TreeNode(95);
+
+        System.out.println(validateBST.isValidBST(validateBST.root));
+        System.out.println(validateBST.isValidBST1(validateBST.root));
 
     }
 
