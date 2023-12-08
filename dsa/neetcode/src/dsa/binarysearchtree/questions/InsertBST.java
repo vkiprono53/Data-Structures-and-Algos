@@ -55,7 +55,14 @@ public class InsertBST {
 
     /**
      * Insert into BST - Recursion
-     * Time Complexity -  O(log n)
+     *     /**
+     *      *
+     *      * Space complexity - O(n)
+     *      * Time Complexity - O(n)
+     *      *
+     *      * ---Balanced
+     *      * Space complexity - O(log n)
+     *      * Time Complexity - O(log n)
      */
     public TreeNode insertIntoBSTIterate(TreeNode root, int val) {
         if (root == null) {
