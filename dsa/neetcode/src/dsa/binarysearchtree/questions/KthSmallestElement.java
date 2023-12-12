@@ -38,7 +38,7 @@ public class KthSmallestElement {
     /**
      *
      * Time complexity - O(n)
-     * Space Complexity - O(n) 
+     * Space Complexity - O(n)
      */
 
     public int kthSmallest(TreeNode root, int k){
