@@ -1,6 +1,8 @@
 package dsa.arraysandhashing;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+
 /**
  * ---------LEETCONE 242 : VALID ANAGRAM----------
  * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
@@ -35,13 +37,13 @@ import java.util.HashMap;
 public class ValidAnagram {
     public static void main(String[] args) {
 
-        String s = "a";
-        String t = "ab";
+        String s = "car";
+        String t = "rac";
 
         String s1 = "rat";
         String t1 = "car";
         System.out.println(isAnagram(s, t));
-        System.out.println(isAnagram2(s1, t1));
+        System.out.println(isAnagram(s1, t1));
     }
 
     /**
@@ -58,24 +60,26 @@ public class ValidAnagram {
             return false;
         }
 
-        HashMap<Character, Integer> tMap = new HashMap<>();
-        HashMap<Character, Integer> sMap = new HashMap<>();
+        Map<Character, Integer> tMap = new HashMap<>();
+        Map<Character, Integer> sMap = new HashMap<>();
 
-        count(tMap, t);
-        count(sMap, s);
+        tMap = count(t);
+        sMap = count(s);
 
         return sMap.equals(tMap);
     }
 
-    public static void  count(HashMap<Character, Integer> map, String myString){
+    public static Map<Character, Integer>  count( String myString){
+        Map<Character, Integer> myMap = new HashMap<>();
         for (int i = 0; i < myString.length(); i++){
-            if(map.containsKey(myString.charAt(i))){
-                map.put(myString.charAt(i), map.get(myString.charAt(i)) + 1);
+            if(myMap.containsKey(myString.charAt(i))){
+                myMap.put(myString.charAt(i), myMap.get(myString.charAt(i)) + 1);
             }
             else{
-                map.put(myString.charAt(i), 1);
+                myMap.put(myString.charAt(i), 1);
             }
         }
+        return myMap;
     }
 
 
@@ -104,5 +108,29 @@ public class ValidAnagram {
         }
 
         return true;
+    }
+
+    public static boolean isAnagram1(String s, String t){
+        Map<Character, Integer> sMap = new HashMap<>();
+        Map<Character, Integer> tMap = new HashMap<>();
+        if (s.length() != t.length()){
+            return false;
+        }
+       sMap = myMap(s);
+       tMap = myMap(t);
+       return sMap.equals(tMap);
+
+    }
+    private static Map<Character, Integer> myMap(String word){
+        Map<Character, Integer> myMap = new HashMap<>();
+        for(int i = 0; i < word.length(); i++){
+            if (myMap.containsKey(word.charAt(i))){
+                myMap.put(word.charAt(i), myMap.get(word.charAt(i)) + 1);
+            }
+            else{
+                myMap.put(word.charAt(i), 1);
+            }
+        }
+        return myMap;
     }
 }

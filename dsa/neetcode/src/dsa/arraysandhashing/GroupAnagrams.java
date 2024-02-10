@@ -21,7 +21,8 @@ public class GroupAnagrams {
         String[] strsArrays = {"eat", "tea", "tan", "ate", "nat", "bat"};
 
 
-        System.out.println(groupAnagrams(strsArrays));
+        System.out.println(groupAnagrams1(strsArrays));
+        System.out.println(groupAnagrams22(strsArrays));
     }
 
     /**
@@ -47,6 +48,52 @@ public class GroupAnagrams {
                 map.put(outputString, myList);
             }
         }
+
+        return new ArrayList<>(map.values());
+    }
+
+    public static List<List<String>> groupAnagrams1(String[] strs) {
+        if(strs == null || strs.length == 0){
+            return new ArrayList<>();
+        }
+        Map<String, List<String>> map = new HashMap<>();
+        for (String word : strs){
+            char[] letters = word.toCharArray();
+            Arrays.sort(letters);
+            String sortedWord = String.valueOf(letters);
+
+            if (map.containsKey(sortedWord)){
+                map.get(sortedWord).add(word);
+            }
+            else {
+                List<String> myList = new ArrayList<>();
+                myList.add(word);
+                map.put(sortedWord, myList);
+            }
+        }
+
+        return new ArrayList<>(map.values());
+    }
+
+    public static List<List<String>> groupAnagrams22(String[] strs) {
+
+        if(strs == null || strs.length == 0)
+            return new ArrayList<>();
+
+        Map<String, List<String>> map = new HashMap<>();
+        for(String s: strs) {
+
+            char[] ch = s.toCharArray();
+            Arrays.sort(ch);
+            String str = String.valueOf(ch);
+
+            if(!map.containsKey(str)) {
+                map.put(str, new ArrayList<>());
+            }
+
+            map.get(str).add(s);
+        }
+
 
         return new ArrayList<>(map.values());
     }
