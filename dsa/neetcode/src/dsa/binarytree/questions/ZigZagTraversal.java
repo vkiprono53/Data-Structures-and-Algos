@@ -7,6 +7,10 @@ import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.List;
 
+/**
+ * Given the root of a binary tree, return the zigzag level order traversal of its nodes' values.
+ * (i.e., from left to right, then right to left for the next level and alternate between).
+ */
 public class ZigZagTraversal {
     public static void main(String[] args) {
         TreeNode root = new TreeNode(10);
@@ -16,8 +20,10 @@ public class ZigZagTraversal {
         root.left.right = new TreeNode(5);
         root.right.left = new TreeNode(7);
         System.out.println(zigzag(root));
+        System.out.println(zigzagLevelOrder(root));
     }
 
+    //Using 2 stacks
     public static List<List<Integer>> zigzag(TreeNode root) {
         Deque<TreeNode> stack1 = new ArrayDeque<>();
         Deque<TreeNode> stack2 = new ArrayDeque<>();
@@ -67,6 +73,48 @@ public class ZigZagTraversal {
 
             }
 
+        }
+        return result;
+    }
+
+    //Using DEQUE
+    public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Deque<TreeNode> myQueue = new ArrayDeque<>();
+        int height = 0;
+        myQueue.addLast(root);
+
+        while (!myQueue.isEmpty()) {
+            List<Integer> myList = new ArrayList<>();
+            int size = myQueue.size();
+            if (height % 2 == 0) {
+                for (int i = 0; i < size; i++) {
+                    TreeNode temp = myQueue.removeFirst();
+                    myList.add(temp.val);
+                    if (temp.left != null) {
+                        myQueue.addLast(temp.left);
+                    }
+                    if (temp.right != null) {
+                        myQueue.addLast(temp.right);
+                    }
+                }
+            } else {
+                for (int i = 0; i < size; i++) {
+                    TreeNode temp = myQueue.removeLast();
+                    if (temp.right != null) {
+                        myQueue.addFirst(temp.right);
+                    }
+                    if (temp.left != null) {
+                        myQueue.addFirst(temp.left);
+                    }
+                    myList.add(temp.val);
+                }
+            }
+            result.add(myList);
+            height++;
         }
         return result;
     }

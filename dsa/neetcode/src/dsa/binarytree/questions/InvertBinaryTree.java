@@ -22,7 +22,7 @@ public class InvertBinaryTree {
         root.left = left;
         root.right = right;
 
-        binaryTree.invertTree(root);
+        System.out.println(binaryTree.invertTree(root).val);
 
     }
 
@@ -33,16 +33,15 @@ public class InvertBinaryTree {
     public TreeNode invertTree(TreeNode root) {
 
         if (root == null) {
-            return root;
+            return null;
         }
 
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
 
-        TreeNode left = invertTree(root.left);
-        TreeNode right = invertTree(root.right);
-
-        root.left = right;
-        root.right = left;
-
+        invertTree(root.left);
+        invertTree(root.right);
         return root;
     }
 
