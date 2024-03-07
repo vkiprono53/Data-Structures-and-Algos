@@ -65,6 +65,41 @@ public class AdjacencyList {
         }
     }
 
+    //DFS
+    public void dfs(int start, LinkedList<Integer>[] graph) {
+
+        Deque<Integer> stack = new ArrayDeque<>();
+        boolean[] isVisited = new boolean[vertex];
+        dfs(start, graph, stack, isVisited);
+        System.out.println();
+    }
+
+    //DFS utility
+    public void dfs(int start, LinkedList<Integer>[] graph, Deque<Integer> stack, boolean[] isVisited) {
+        //Add node to the stack:
+        stack.push(start);
+        //Add to the visited list:
+        isVisited[start] = true;
+
+        //Loop through the stack:
+        while (!stack.isEmpty()) {
+            //pop
+            int top = stack.pop();
+            System.out.print(top + "->");
+            int size = graph[top].size();
+            for (int i = 0; i < size; i++) {
+                int current = graph[top].get(i);
+                if (!isVisited[current]) {
+                    stack.push(current);
+                    isVisited[current] = true;
+                    //Recursive
+                  //  dfs(current, graph, stack,isVisited);
+                }
+            }
+        }
+
+    }
+
     //Driver code
     public static void main(String[] args) {
         AdjacencyList adjacencyList = new AdjacencyList(4);
@@ -76,5 +111,9 @@ public class AdjacencyList {
         adjacencyList.printGraph();
         System.out.println("BFS TRAVERSAL:::::");
         adjacencyList.bfs(0);
+        System.out.println("============");
+        System.out.println("DFS TRAVERSAL:::::");
+        adjacencyList.dfs(0, adjacencyList.list);
+
     }
 }
