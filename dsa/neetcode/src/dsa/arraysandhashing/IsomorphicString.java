@@ -42,6 +42,11 @@ public class IsomorphicString {
         System.out.println(isomorphicString.isIsomorphic(s1, t1));
     }
 
+    /**
+     *
+     * Space Complexity - O(n)
+     * Time Complexity - O(n)
+     */
     public boolean isIsomorphic(String s, String t) {
 
         if (s.length() != t.length()) {
