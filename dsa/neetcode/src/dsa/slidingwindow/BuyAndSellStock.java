@@ -24,7 +24,6 @@ public class BuyAndSellStock {
     }
 
     /**
-     *
      * Time Complexity - O(n)
      * Space Complexity - O(1)
      */
@@ -43,6 +42,42 @@ public class BuyAndSellStock {
             }
         }
 
+        return maxProfit;
+    }
+
+    /**
+     * Time Complexity = O(n)
+     * Space Complexity - O(1)
+     */
+    public int maxProfit1(int[] prices) {
+        int slow = 0;
+        int fast = 1;
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[fast] < prices[slow]) {
+                slow = fast;
+                fast++;
+            } else {
+                maxProfit = Math.max(maxProfit, prices[fast] - prices[slow]);
+                fast++;
+            }
+        }
+        return maxProfit;
+    }
+
+    /**
+     * Space Complexity - O(1)
+     * Time Compexity - O(n^2) - TLE
+     */
+    public int maxProfit2(int[] prices) {
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[j] > prices[i]) {
+                    maxProfit = Math.max(maxProfit, prices[j] - prices[i]);
+                }
+            }
+        }
         return maxProfit;
     }
 }
