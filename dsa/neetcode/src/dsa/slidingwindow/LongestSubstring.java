@@ -23,8 +23,8 @@ public class LongestSubstring {
     public static void main(String[] args) {
 
         LongestSubstring longestSubstring = new LongestSubstring();
-        String s = "au";
-        System.out.println(longestSubstring.lengthOfLongestSubstring(s));
+        String s = "aaqrsvbspk";
+        System.out.println(longestSubstring.lengthOfLongestSubstring3(s));
     }
 
     public int lengthOfLongestSubstring(String s) {
@@ -69,5 +69,29 @@ public class LongestSubstring {
         return maxLen;
     }
 
+    /**
+     * Time Complexity - O(n)
+     * Space Complexity - O(n)
+     */
+    public int lengthOfLongestSubstring3(String s) {
+        int j = 0;
+        int maxLen = 0;
+        int len = s.length();
+
+        Set<Character> set = new HashSet<>();
+        for (int i = 0; i < len; i++) {
+            if (!set.contains(s.charAt(i))) {
+                set.add(s.charAt(i));
+                maxLen = Math.max(maxLen, i - j + 1);
+            } else {
+                while (set.contains(s.charAt(i))) {
+                    set.remove(s.charAt(j));
+                    j++;
+                }
+                set.add(s.charAt(i));
+            }
+        }
+        return maxLen;
+    }
 
 }
