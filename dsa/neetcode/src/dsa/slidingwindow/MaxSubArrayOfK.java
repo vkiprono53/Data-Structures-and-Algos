@@ -17,7 +17,7 @@ public class MaxSubArrayOfK {
         int maxSum = 0;
         int sumSubArray;
 
-        for (int i = 0; i < nums.length - k; i++) {
+        for (int i = 0; i <= nums.length - k; i++) {
             sumSubArray = 0;
             for (int j = i; j < i + k; j++) {
                 sumSubArray += nums[j];
