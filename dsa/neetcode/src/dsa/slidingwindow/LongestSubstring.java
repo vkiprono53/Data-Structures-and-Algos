@@ -34,7 +34,7 @@ public class LongestSubstring {
             Set<Character> mySet = new HashSet<>();
             for (int j = i; j < s.length(); j++) {
 
-                if (mySet.contains(s.charAt(j))) { // if element if found so mark it as ans and break from the loop
+                if (mySet.contains(s.charAt(j))) {
                     maxLen = Math.max(maxLen, j - i);
                     break;
                 }
@@ -46,30 +46,9 @@ public class LongestSubstring {
         }
         return maxLen;
     }
-
+    
     /**
-     * Sliding window:
-     */
-    public int lengthOfLongestSubstring1(String s) {
-        int maxLen = 0;
-        int l = 0;
-        Set<Character> mySet = new HashSet<>();
-        for (int r = 0; r < s.length(); r++) {
-            if (!mySet.contains(s.charAt(r))) {
-                mySet.add(s.charAt(r));
-                maxLen = Math.max(maxLen, r - l + 1);
-            } else {
-                while (mySet.contains(s.charAt(r))) {
-                    mySet.remove(s.charAt(r));
-                    l++;
-                }
-            }
-            mySet.add(s.charAt(r));
-        }
-        return maxLen;
-    }
-
-    /**
+     *  Sliding window:
      * Time Complexity - O(n)
      * Space Complexity - O(n)
      */
