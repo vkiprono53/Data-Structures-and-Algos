@@ -59,7 +59,7 @@ public class KokoEatingBananas {
 
     /**
      *
-     * Time Complexity - O(n + log(max(piles));
+     * Time Complexity - O(n log(max(piles));
      * Space Complexity - O(1)
      */
     public int minEatingSpeed(int[] piles, int h) {
