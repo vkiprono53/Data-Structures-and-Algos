@@ -32,6 +32,7 @@ public class FindDuplicate {
                 }
             }
         }
+        return -1;
     }
 
     /**
