@@ -21,12 +21,11 @@ import java.util.List;
  */
 public class RightSideBinaryTree {
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(8);
-        root.right = new TreeNode(2);
-        root.left.left = new TreeNode(3);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
         root.left.right = new TreeNode(5);
-        root.right.left = new TreeNode(7);
+        root.right.right = new TreeNode(4);
         System.out.println(rightSideView(root));
         Math.abs(0 - 1);
 
@@ -57,5 +56,28 @@ public class RightSideBinaryTree {
         }
         return result;
 
+    }
+
+    /**
+     * Time Complexity - O(n)
+     * Space Complexity - O(n)
+     */
+    public List<Integer> rightSideView1(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if(root == null) return result;
+        Deque<TreeNode> myQueue = new ArrayDeque<>();
+        myQueue.addLast(root);
+
+        while(!myQueue.isEmpty()){
+            int size = myQueue.size();
+            for(int i = 0; i < size; i++){
+                TreeNode temp = myQueue.removeFirst();
+                if(temp.left != null) myQueue.addLast(temp.left);
+                if(temp.right != null) myQueue.addLast(temp.right);
+
+                if(i == size - 1) result.add(temp.val);
+            }
+        }
+        return result;
     }
 }
