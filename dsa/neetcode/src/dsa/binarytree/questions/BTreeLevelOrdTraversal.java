@@ -7,10 +7,7 @@ package dsa.binarytree.questions;
 
 import dsa.binarytree.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * LEETCODE 102. Binary Tree Level Order Traversal
@@ -57,6 +54,33 @@ public class BTreeLevelOrdTraversal {
             }
 
             result.add(list);
+        }
+        return result;
+    }
+
+    /**
+     * Time Complexity - O(l) - l is the largest level
+     * Space Complexity - O(n) 
+     */
+
+    public List<List<Integer>> levelOrder1(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null) return result;
+        Deque<TreeNode> myQueue = new ArrayDeque<>();
+        myQueue.addLast(root);
+
+        while(!myQueue.isEmpty()){
+            int size = myQueue.size();
+            List<Integer>myList = new ArrayList<>();
+
+            for(int i = 0 ; i < size; i++){
+                TreeNode temp = myQueue.removeFirst();
+                if(temp.left != null) myQueue.addLast(temp.left);
+                if(temp.right != null) myQueue.addLast(temp.right);
+                myList.add(temp.val);
+            }
+            result.add(myList);
+
         }
         return result;
     }
