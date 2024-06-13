@@ -38,25 +38,26 @@ public class KthSmallestElement {
     /**
      *
      * Time complexity - O(n)
-     * Space Complexity - O(n)
+     * Space Complexity - O(h) - height of the tree, Balanced - O(log n)
      */
-
-    public int kthSmallest(TreeNode root, int k){
-      return inOrder(root, k).val;
-    }
-    private TreeNode inOrder(TreeNode root, int k){
-        if (root == null){
-            return null;
+    int output = 0;
+    public int kthSmallest(TreeNode root, int k) {
+        if (root != null) {
+            inOrder(root, k);
         }
-        TreeNode left = inOrder(root.left,k);
-        if (left != null){
-            return left;
+        return output;
+    }
+    private void inOrder(TreeNode node, int k) {
+        if (node.left != null) {
+            inOrder(node.left, k);
         }
         counter++;
-        if (counter == k){
-            return root;
+        if (counter == k) {
+            output = node.val;
+            return;
         }
-        return inOrder(root.right, k);
+        if (node.right != null)
+            inOrder(node.right, k);
     }
 
 
