@@ -1,5 +1,7 @@
 package dsa.graphs.questions;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -31,6 +33,46 @@ public class CourseSchedule {
         int[][] prerequisites = {{1,0}};
         CourseSchedule schedule = new CourseSchedule();
         System.out.println(schedule.canFinish(numCourses, prerequisites));
+    }
+
+    /**
+     * Time Complexity - O(v + e)
+     * Space - O(v)- vertices
+     */
+    public boolean canFinish2(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> adjList = new ArrayList<>();
+        for (int i = 0; i < numCourses; i++) {
+            adjList.add(new ArrayList<>());
+        }
+        //Prerequisites
+        int[] inDegree = new int[numCourses];
+
+        for (int[] prerequisite : prerequisites) {
+            int course = prerequisite[0];
+            int prereqCourse = prerequisite[1];
+            adjList.get(prereqCourse).add(course);
+            inDegree[course]++;
+        }
+        //Course - No Prerequisite:
+        Deque<Integer> myQueue = new ArrayDeque<>();
+        int processedCourses = 0;
+        for (int i = 0; i < inDegree.length; i++) {
+            if (inDegree[i] == 0) {
+                myQueue.addLast(i);
+            }
+        }
+        while (!myQueue.isEmpty()) {
+            int course = myQueue.removeFirst();
+            processedCourses++;
+
+            for (int neighbor : adjList.get(course)) {
+                inDegree[neighbor]--;
+                if (inDegree[neighbor] == 0) {
+                    myQueue.addLast(neighbor);
+                }
+            }
+        }
+        return processedCourses == numCourses;
     }
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
